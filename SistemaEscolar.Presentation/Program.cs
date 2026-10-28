@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SistemaEscolar.Business;
+using SistemaEscolar.Presentation.Navigation;
 using SistemaEscolar.Presentation.Views;
 using SistemaEscolar.Presentation.Views.Admin;
 using SistemaEscolar.Presentation.Views.Auth;
@@ -33,11 +34,16 @@ namespace SistemaEscolar.Presentation
             // Register infrastructure and application services
             services.AddBusinessServices();
 
+            // Generar inyección de servicios de presentación
+            var navContext = new NavigationContext();
+            services.AddSingleton(navContext);
+            services.AddSingleton<INavigationService, NavigationService>();
+
             // Generar inyección de formularios
             services.AddTransient<Form1>();
             services.AddTransient<FrmAlumnoProfile>();
             services.AddTransient<FrmLogin>();
-            services.AddTransient<FrmAdminMain>();
+            services.AddTransient<FrmAdminMain>();            
 
             // Construir el proveedor de servicios
             ServiceProvider = services.BuildServiceProvider();
@@ -46,15 +52,10 @@ namespace SistemaEscolar.Presentation
             Application.ThreadException += UIThread_Exception;
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
-            var frmLogin = ServiceProvider.GetRequiredService<FrmLogin>();
-            var resultLogin = frmLogin.ShowDialog();
+            var nav = ServiceProvider.GetRequiredService<INavigationService>();
+            nav.Start<FrmLogin>();
 
-            if (resultLogin != DialogResult.OK)
-                return;
-
-            var mainForm = ServiceProvider.GetRequiredService<FrmAdminMain>();
-
-            Application.Run(mainForm);
+            Application.Run(navContext);
         }
 
         // Captura errores ocurridos en los hilos de la interfaz de usuario (el 95% de los clicks)

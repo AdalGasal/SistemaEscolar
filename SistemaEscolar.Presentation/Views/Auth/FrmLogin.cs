@@ -1,5 +1,6 @@
 ﻿
 using SistemaEscolar.Business.Interfaces;
+using SistemaEscolar.Presentation.Navigation;
 using SistemaEscolar.Presentation.Views.Admin;
 using SistemaEscolar.Shared.Dtos.Auth;
 
@@ -8,10 +9,13 @@ namespace SistemaEscolar.Presentation.Views.Auth
     public partial class FrmLogin : Form
     {
         private readonly IAuthService _authService;
+        private readonly INavigationService _navService;
 
-        public FrmLogin(IAuthService authService)
+        public FrmLogin(IAuthService authService, INavigationService navService)
         {
             _authService = authService;
+            _navService = navService;
+
             InitializeComponent();
             ViewStyles.BorderRadius(grpBoxLogin, 10);
             ViewStyles.BorderRadius(btnLogin, 10);
@@ -41,32 +45,15 @@ namespace SistemaEscolar.Presentation.Views.Auth
             var result = await _authService.LoginAsync(login);
 
             if (result)
-            {
-                MessageBox.Show("Se inicio sesión correctamente.");
-            }
-            return true;
+                _navService.Replace<FrmAdminMain>();
+
+            return result;
         }
 
         private async void btnLogin_Click(object sender, EventArgs e)
         {
-            //if (await LoginAsync())
-            //{
-            //    DialogResult = DialogResult.OK;
-            //}
-            //else
-            //    DialogResult = DialogResult.No;
-
-            // Operador ternario
-            // variable = validacion ? result true : result false
-
             var result = await LoginAsync();
             DialogResult = result ? DialogResult.OK : DialogResult.No;
-
-            //if (result)
-            //{
-            //    var frmAdminMain = new FrmAdminMain();
-            //    frmAdminMain.Show();
-            //}
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
