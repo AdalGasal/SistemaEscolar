@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="ARQUITECTURA.md" />
+  </Folder>
   <Project Path="SistemaEscolar.Business/SistemaEscolar.Business.csproj" />
   <Project Path="SistemaEscolar.Data/SistemaEscolar.Data.csproj" />
   <Project Path="SistemaEscolar.Presentation/SistemaEscolar.Presentation.csproj" />

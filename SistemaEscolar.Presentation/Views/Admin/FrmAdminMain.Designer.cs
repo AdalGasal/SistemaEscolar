@@ -33,8 +33,11 @@
             lblTotalCarreas = new Label();
             groupBox2 = new GroupBox();
             groupBox3 = new GroupBox();
-            groupBox4 = new GroupBox();
+            grpBoxAlumnos = new GroupBox();
+            label1 = new Label();
+            lblTotalAlumnos = new Label();
             grpBoxCarreras.SuspendLayout();
+            grpBoxAlumnos.SuspendLayout();
             SuspendLayout();
             // 
             // grpBoxCarreras
@@ -55,10 +58,11 @@
             // label2
             // 
             label2.AutoSize = true;
+            label2.Font = new Font("Segoe Fluent Icons", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Gray;
             label2.Location = new Point(18, 90);
             label2.Name = "label2";
-            label2.Size = new Size(169, 21);
+            label2.Size = new Size(148, 16);
             label2.TabIndex = 1;
             label2.Text = "Total carreras activas";
             // 
@@ -97,24 +101,48 @@
             groupBox3.TabStop = false;
             groupBox3.Text = "Docentes";
             // 
-            // groupBox4
+            // grpBoxAlumnos
             // 
-            groupBox4.Font = new Font("Segoe UI", 12F);
-            groupBox4.Location = new Point(819, 17);
-            groupBox4.Margin = new Padding(3, 2, 3, 2);
-            groupBox4.Name = "groupBox4";
-            groupBox4.Padding = new Padding(3, 2, 3, 2);
-            groupBox4.Size = new Size(239, 128);
-            groupBox4.TabIndex = 1;
-            groupBox4.TabStop = false;
-            groupBox4.Text = "Ahí vemos";
+            grpBoxAlumnos.Controls.Add(label1);
+            grpBoxAlumnos.Controls.Add(lblTotalAlumnos);
+            grpBoxAlumnos.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            grpBoxAlumnos.ForeColor = Color.FromArgb(0, 0, 192);
+            grpBoxAlumnos.Location = new Point(819, 17);
+            grpBoxAlumnos.Margin = new Padding(3, 2, 3, 2);
+            grpBoxAlumnos.Name = "grpBoxAlumnos";
+            grpBoxAlumnos.Padding = new Padding(3, 2, 3, 2);
+            grpBoxAlumnos.Size = new Size(239, 128);
+            grpBoxAlumnos.TabIndex = 1;
+            grpBoxAlumnos.TabStop = false;
+            grpBoxAlumnos.Text = "Alumnos";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.ForeColor = Color.Gray;
+            label1.Location = new Point(16, 90);
+            label1.Name = "label1";
+            label1.Size = new Size(186, 21);
+            label1.TabIndex = 3;
+            label1.Text = "Total alumnos inscritos";
+            // 
+            // lblTotalAlumnos
+            // 
+            lblTotalAlumnos.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTotalAlumnos.ForeColor = Color.FromArgb(0, 0, 192);
+            lblTotalAlumnos.Location = new Point(5, 23);
+            lblTotalAlumnos.Name = "lblTotalAlumnos";
+            lblTotalAlumnos.Size = new Size(228, 61);
+            lblTotalAlumnos.TabIndex = 2;
+            lblTotalAlumnos.Text = "0";
+            lblTotalAlumnos.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // FrmAdminMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1068, 499);
-            Controls.Add(groupBox4);
+            Controls.Add(grpBoxAlumnos);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(grpBoxCarreras);
@@ -125,6 +153,8 @@
             Load += FrmAdminMain_Load;
             grpBoxCarreras.ResumeLayout(false);
             grpBoxCarreras.PerformLayout();
+            grpBoxAlumnos.ResumeLayout(false);
+            grpBoxAlumnos.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -133,8 +163,10 @@
         private GroupBox grpBoxCarreras;
         private GroupBox groupBox2;
         private GroupBox groupBox3;
-        private GroupBox groupBox4;
+        private GroupBox grpBoxAlumnos;
         private Label label2;
         private Label lblTotalCarreas;
+        private Label label1;
+        private Label lblTotalAlumnos;
     }
 }
